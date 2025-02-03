@@ -1,0 +1,98 @@
+<script>
+    const form = document.querySelector('#addItemForm');
+    form?.addEventListener('submit', (event) => {
+        event.preventDefault();
+    });
+
+    const button = document.querySelector('button#submitButton');
+
+    async function post() {
+        const itemname = (document.querySelector('#name') as HTMLInputElement).value;
+        const itemurl = (document.querySelector('#link') as HTMLInputElement).value;
+        const img = (document.querySelector('#image') as HTMLInputElement).value;
+        const price = (document.querySelector('#price') as HTMLInputElement).value;
+
+        await fetch('http://localhost:3000/createNewItem', {
+            body: JSON.stringify({
+                itemname, itemurl, img, price
+            }),
+            headers: {
+                "content-type": "application/json"
+            },
+            method: "POST"
+        });
+
+        // location.reload();
+    }
+
+
+    button?.addEventListener('click', () => {
+        post();
+    });
+</script>
+
+<div id="popup">
+    <div id="title">Adicionar novo item</div>
+    <form id="addItemForm">
+
+
+        <label for="name">Nome</label><br>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="image">Imagem</label><br>
+        <input type="url" id="image" name="image" required>
+        <br>
+        <label for="price">Preço</label><br>
+        <input type="number" id="price" name="price" required>
+        <br>
+        <label for="link">Link</label><br>
+        <input type="url" id="link" name="link" required>
+        <br><br>
+        <button id="submitButton" type="submit">Adicionar</button>
+    </form>
+
+    
+</div>
+
+
+<style>
+    #popup {
+        display: block;
+        justify-content: center;
+        width: 50vh;
+        font-size: 15px;
+        margin: 5px;
+    }
+
+    #name, #image, #price, #link {
+        border: unset;
+        border-radius: 5px;
+        padding: 1vh 0;
+        padding-left: 1vh;
+        width: 100%;
+        background-color: rgb(238, 238, 238);
+        font-family: 'Poppins';
+    }
+
+    #name:focus, #image:focus, #price:focus, #link:focus {
+        outline: none;
+    }
+
+    #title {
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    #submitButton {
+        padding: 5px 2vh;
+        border-radius: 10px;
+        background-color: rgb(154, 223, 154);
+        border: unset;
+        font-family: 'Poppins';
+        transition: background-color 0.3s;
+    }
+
+    #submitButton:hover {
+        background-color: rgb(121, 179, 121);
+    }
+</style>

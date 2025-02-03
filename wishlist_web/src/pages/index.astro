@@ -1,0 +1,23 @@
+---
+import Profile from "../components/Profile.astro"
+import "../styles/global.css"
+import Layout from "../layouts/Layout.astro"
+import WishlistGrid from "../components/WishlistGrid.astro"
+---
+
+<Layout>
+	<div id="content">
+		<Profile></Profile>
+
+		<WishlistGrid></WishlistGrid></div>
+</Layout>
+
+<style>
+
+	#content {
+		height: 100vh;
+		max-width: 80vh;
+		width: 100%;
+		margin: 0 auto;
+	}
+</style>

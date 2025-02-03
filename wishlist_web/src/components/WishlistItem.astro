@@ -1,0 +1,43 @@
+---
+
+const { itemname, itemurl, imgurl, price } = Astro.props;
+
+---
+
+<div id="wishlistItem">
+    <a target=_blank href={itemurl}><img src={imgurl}></a>
+    <div id="productText">
+        <div>{itemname}</div>
+        <div class="Price">R${price}</div>
+    </div>
+    
+</div>
+
+<style>
+    img {
+        object-fit: cover;
+        width: 250px;
+        height: 250px;
+    }
+
+    .Price {
+        font-weight: 700;
+    }
+
+    #productText {
+        margin-left: 15px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        display: flex;
+        justify-content: space-between;
+    }
+    #wishlistItem {
+        background-color: rgb(247, 247, 247);
+        border-radius: 10px;
+        transition: opacity 0.5s ease;
+    }
+
+    #wishlistItem:hover {
+        opacity: 0.5;
+    }
+</style>

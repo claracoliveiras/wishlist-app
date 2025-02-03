@@ -1,0 +1,65 @@
+---
+import WishlistItem from "./WishlistItem.astro";
+import PopupAdd from "./PopupAdd.astro";
+
+const wishlistItemsDb = await fetch('http://localhost:3000/getWishlistItems');
+const data: Array<{
+    itemname: string,
+    itemurl: string,
+    img: string,
+    price: number
+}> = await wishlistItemsDb.json();
+
+---
+
+<div id="titleBox">
+    <div class="Title">Item wishlist</div>
+    <div id="buttons">
+        <button class="buttonstyle" popovertarget="popupadd"><i class="fa fa-plus"></i></button>
+        <button class="buttonstyle"><i class="fa fa-trash" aria-hidden="true"></i></button>
+    </div>
+</div>
+
+<div id="popupadd" popover><PopupAdd></PopupAdd></div>
+
+<div id="wishlistGrid">
+    {
+        data.map((data) => <WishlistItem itemname={data.itemname} itemurl={data.itemurl} imgurl={data.img} price={data.price}></WishlistItem>)
+    }
+</div>
+
+
+<style>
+    #wishlistGrid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    #titleBox {
+        padding: 2vh 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .buttonstyle {
+        padding: 2vh;
+        border-radius: 10px;
+        background-color: rgb(247, 247, 247);
+        border: unset;
+    }
+
+    #buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+    }
+
+    #popupadd {
+        border: unset;
+        padding: 2vh;
+        border-radius: 10px;
+    }
+
+</style>
