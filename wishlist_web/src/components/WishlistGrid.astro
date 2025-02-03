@@ -2,12 +2,13 @@
 import WishlistItem from "./WishlistItem.astro";
 import PopupAdd from "./PopupAdd.astro";
 
-const wishlistItemsDb = await fetch('http://localhost:3000/getWishlistItems');
+const wishlistItemsDb = await fetch('http://192.168.0.103:3000/getWishlistItems');
 const data: Array<{
     itemname: string,
     itemurl: string,
     img: string,
-    price: number
+    price: number,
+    id: string
 }> = await wishlistItemsDb.json();
 
 ---
@@ -24,15 +25,14 @@ const data: Array<{
 
 <div id="wishlistGrid">
     {
-        data.map((data) => <WishlistItem itemname={data.itemname} itemurl={data.itemurl} imgurl={data.img} price={data.price}></WishlistItem>)
+        data.map((data) => <WishlistItem itemname={data.itemname} itemurl={data.itemurl} imgurl={data.img} price={data.price} id={data.id}></WishlistItem>)
     }
 </div>
-
 
 <style>
     #wishlistGrid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 10px;
     }
 
@@ -48,6 +48,12 @@ const data: Array<{
         border-radius: 10px;
         background-color: rgb(247, 247, 247);
         border: unset;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .buttonstyle:hover {
+        background-color: rgb(189, 189, 189);
+
     }
 
     #buttons {
@@ -61,5 +67,11 @@ const data: Array<{
         padding: 2vh;
         border-radius: 10px;
     }
+
+    #popupadd::backdrop {
+        background: rgba(0, 0, 0, 0.25);
+    }
+
+    #popupadd:
 
 </style>

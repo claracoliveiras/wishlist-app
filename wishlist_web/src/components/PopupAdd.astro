@@ -7,12 +7,12 @@
     const button = document.querySelector('button#submitButton');
 
     async function post() {
-        const itemname = (document.querySelector('#name') as HTMLInputElement).value;
+        const itemname = (document.querySelector('#itemname') as HTMLInputElement).value;
         const itemurl = (document.querySelector('#link') as HTMLInputElement).value;
         const img = (document.querySelector('#image') as HTMLInputElement).value;
         const price = (document.querySelector('#price') as HTMLInputElement).value;
-
-        await fetch('http://localhost:3000/createNewItem', {
+   
+        await fetch('http://192.168.0.103:3000/createNewItem', {
             body: JSON.stringify({
                 itemname, itemurl, img, price
             }),
@@ -22,7 +22,7 @@
             method: "POST"
         });
 
-        // location.reload();
+        location.reload();
     }
 
 
@@ -35,9 +35,9 @@
     <div id="title">Adicionar novo item</div>
     <form id="addItemForm">
 
+        <label for="itemname">Nome</label><br>
+        <input type="text" id="itemname" name="itemname" required>
 
-        <label for="name">Nome</label><br>
-        <input type="text" id="name" name="name" required>
         <br>
         <label for="image">Imagem</label><br>
         <input type="url" id="image" name="image" required>
@@ -64,7 +64,7 @@
         margin: 5px;
     }
 
-    #name, #image, #price, #link {
+    #itemname, #image, #price, #link {
         border: unset;
         border-radius: 5px;
         padding: 1vh 0;
@@ -74,7 +74,7 @@
         font-family: 'Poppins';
     }
 
-    #name:focus, #image:focus, #price:focus, #link:focus {
+    #itemname:focus, #image:focus, #price:focus, #link:focus {
         outline: none;
     }
 

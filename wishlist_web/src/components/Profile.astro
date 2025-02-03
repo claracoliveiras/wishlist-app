@@ -3,21 +3,75 @@
         <img id="profilePicture" width="150" height="150" src="https://i.pinimg.com/736x/45/6c/f8/456cf85ea044fe12580466ab35c84300.jpg">
     </div>
     <div id="profileInfo">
-        <h>Clara<br></h>
+        <div id="name">Clara</div>
+        <div id="handle">@claracampos</div>
+        <br>
+        <div id="socialsRow">
+            <div class="socials">
+                <a target=_blank href="https://www.instagram.com/c.laraoliveiras/" class="sociallink">
+                    <div class="socialbox">
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                        <div id="socialhandle">c.laraoliveiras</div>
+                    </div>
+                </a>
+            </div>
+            <div class="socials">
+                <a target=_blank href="https://github.com/claracoliveiras" class="sociallink">
+                    <div class="socialbox">
+                        <i class="fa fa-github" aria-hidden="true"></i>
+                        <div id="socialhandle">claracoliveiras</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+
     </div>
 </div>
 
 <style>
+    #socialsRow {
+        display: flex;
+        gap: 5px;
+    }
+
+    .socialbox {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .sociallink {
+        text-decoration: none;
+        color: black;
+    }
+
+    .socials {
+        background-color: rgb(247, 247, 247);
+        border-radius: 10px;
+        padding: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .socials:hover {
+        background-color: rgb(190, 190, 190);
+    }
+
     #profile {
         width: 80vh;
         display: flex;
-        justify-content: space-between;
+        gap: 10px;
     }
     #profileInfo {
+        margin: 10px;
         display: block;
         justify-content: space-between;
     }
     #profilePicture{
         border-radius: 38px;
+    }
+    #name {
+        font-weight: 700;
+        font-size: 20px;
     }
 </style>

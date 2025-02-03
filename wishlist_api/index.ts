@@ -58,3 +58,13 @@ app.post('/createNewItem', (request, response) => {
     
 });
 
+app.delete('/deleteItem', (request, response) => {
+    const itemname = request.body.itemname;
+
+    pool.query('DELETE FROM items WHERE itemname = $1', [itemname], (error, results) => {
+        if (error) {
+            throw error;
+        }
+        response.status(200).send([`Item of name: ${itemname} deleted.`]);
+    });
+});

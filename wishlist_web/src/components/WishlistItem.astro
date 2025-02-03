@@ -1,10 +1,10 @@
 ---
 
-const { itemname, itemurl, imgurl, price } = Astro.props;
+const { itemname, itemurl, imgurl, price, id } = Astro.props;
 
 ---
 
-<div id="wishlistItem">
+<div id={id} class="wishlistItem">
     <a target=_blank href={itemurl}><img src={imgurl}></a>
     <div id="productText">
         <div>{itemname}</div>
@@ -13,10 +13,19 @@ const { itemname, itemurl, imgurl, price } = Astro.props;
     
 </div>
 
+<script define:vars={{id}} type="module">
+import { addToIdList, getAllIds } from "./source.js";
+
+    const card = document.getElementById(id);
+    card?.addEventListener('click', function() {
+        addToIdList(card.id);
+        getAllIds();
+    });
+</script>
+
 <style>
     img {
         object-fit: cover;
-        width: 250px;
         height: 250px;
     }
 
@@ -31,13 +40,14 @@ const { itemname, itemurl, imgurl, price } = Astro.props;
         display: flex;
         justify-content: space-between;
     }
-    #wishlistItem {
+    .wishlistItem {
         background-color: rgb(247, 247, 247);
         border-radius: 10px;
         transition: opacity 0.5s ease;
+        width: 250px;
     }
 
-    #wishlistItem:hover {
+    .wishlistItem:hover {
         opacity: 0.5;
     }
 </style>
