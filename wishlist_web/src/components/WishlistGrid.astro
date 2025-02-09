@@ -2,12 +2,15 @@
 import WishlistItem from "./WishlistItem.astro";
 import PopupAdd from "./PopupAdd.astro";
 
-const wishlistItemsDb = await fetch('http://192.168.0.103:3000/getWishlistItems');
+const wishlistItemsDb = await fetch('http://192.168.0.108:2000/getWishlistItems');
 const data: Array<{
     itemname: string,
     itemurl: string,
-    img: string,
-    price: number,
+    imgurl: string,
+    itemprice: number,
+    itemcolor: string,
+    itembrand: string,
+    itemsize: string,
     id: string
 }> = await wishlistItemsDb.json();
 
@@ -25,7 +28,16 @@ const data: Array<{
 
 <div id="wishlistGrid">
     {
-        data.map((data) => <WishlistItem itemname={data.itemname} itemurl={data.itemurl} imgurl={data.img} price={data.price} id={data.id}></WishlistItem>)
+        data.map((data) => <WishlistItem 
+            itemname={data.itemname} 
+            itemurl={data.itemurl} 
+            imgurl={data.imgurl} 
+            itemprice={data.itemprice} 
+            itemcolor={data.itemcolor} 
+            itembrand={data.itembrand} 
+            itemsize={data.itemsize} 
+            id={data.id}>
+        </WishlistItem>)
     }
 </div>
 

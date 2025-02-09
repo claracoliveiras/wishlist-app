@@ -2,6 +2,10 @@
     font-family: 'Poppins', serif;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 .Title {
     font-size: 30px;
 }

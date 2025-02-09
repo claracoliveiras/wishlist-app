@@ -16,5 +16,8 @@
     "express": "^4.21.2",
     "pg": "^8.13.1",
     "wishlist_api": "file:"
+  },
+  "scripts": {
+    "start": "bun index.ts"
   }
 }

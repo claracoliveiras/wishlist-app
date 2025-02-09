@@ -9,12 +9,15 @@
     async function post() {
         const itemname = (document.querySelector('#itemname') as HTMLInputElement).value;
         const itemurl = (document.querySelector('#link') as HTMLInputElement).value;
-        const img = (document.querySelector('#image') as HTMLInputElement).value;
-        const price = (document.querySelector('#price') as HTMLInputElement).value;
+        const imgurl = (document.querySelector('#image') as HTMLInputElement).value;
+        const itemprice = (document.querySelector('#price') as HTMLInputElement).value;
+        const itemcolor = (document.querySelector('#itemcolor') as HTMLInputElement).value;
+        const itembrand = (document.querySelector('#itembrand') as HTMLInputElement).value;
+        const itemsize = (document.querySelector('#itemsize') as HTMLInputElement).value;
    
-        await fetch('http://192.168.0.103:3000/createNewItem', {
+        await fetch('http://192.168.0.108:2000/createNewItem', {
             body: JSON.stringify({
-                itemname, itemurl, img, price
+                itemname, itemurl, imgurl, itemprice, itemcolor, itembrand, itemsize
             }),
             headers: {
                 "content-type": "application/json"
@@ -32,23 +35,42 @@
 </script>
 
 <div id="popup">
-    <div id="title">Adicionar novo item</div>
+    
     <form id="addItemForm">
+        <div id="titlebox">
+            <div id="title">
+                <i class="fa fa-bookmark" aria-hidden="true"></i>
+                Adicionar novo item
+            </div>
+            <button id="submitButton" type="submit">Adicionar</button>
+        </div>
+        
 
         <label for="itemname">Nome</label><br>
-        <input type="text" id="itemname" name="itemname" required>
+        <input placeholder="Adicione o nome do item" type="text" id="itemname" name="itemname" required>
 
+        <label for="itembrand">Marca</label><br>
+        <input placeholder="Adicione a marca ou origem do item (ex: M.A.C ou Temu)" type="text" id="itembrand" name="itembrand" required>
         <br>
-        <label for="image">Imagem</label><br>
-        <input type="url" id="image" name="image" required>
+
+        <label for="itemcolor">Cor</label><br>
+        <input placeholder="Adicione a cor (swatch) do item" type="text" id="itemcolor" name="itemcolor">
         <br>
-        <label for="price">Preço</label><br>
-        <input type="number" id="price" name="price" required>
+
+        <label for="itemsize">Tamanho</label><br>
+        <input placeholder="Adicione o tamanho do item (ex: 39 ou M)" type="text" id="itemsize" name="itemsize">
         <br>
-        <label for="link">Link</label><br>
-        <input type="url" id="link" name="link" required>
+
+        <label for="imgurl">Imagem</label><br>
+        <input placeholder="Adicione a url da imagem do produto" type="url" id="image" name="image" required>
+        <br>
+        <label for="itemprice">Preço</label><br>
+        <input placeholder="Adicione o preço do produto" type="number" id="price" name="price" required>
+        <br>
+        <label for="itemlink">Link</label><br>
+        <input placeholder="Adicione o link do produto" type="url" id="link" name="link" required>
         <br><br>
-        <button id="submitButton" type="submit">Adicionar</button>
+        
     </form>
 
     
@@ -64,35 +86,54 @@
         margin: 5px;
     }
 
-    #itemname, #image, #price, #link {
-        border: unset;
+    #itemname, #image, #price, #link, #itembrand, #itemcolor, #itemsize {
+        border-color: rgb(238, 238, 238);
+        border-style: dotted;
         border-radius: 5px;
-        padding: 1vh 0;
-        padding-left: 1vh;
+        padding: 1vh;
+        box-sizing: border-box;
+        margin-bottom: 20px;
         width: 100%;
-        background-color: rgb(238, 238, 238);
         font-family: 'Poppins';
     }
 
-    #itemname:focus, #image:focus, #price:focus, #link:focus {
-        outline: none;
+    #itemname:focus, #image:focus, #price:focus, #link:focus, #itembrand:focus, #itemcolor:focus, #itemsize:focus {
+        outline-color: #ffc8dd;
+    }
+
+    .fa.fa-bookmark {
+        color: #ffc8dd;
     }
 
     #title {
-        font-weight: bold;
+        font-weight: 600;
         font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+    }
+
+    #titlebox {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        justify-content: space-between;
     }
 
     #submitButton {
         padding: 5px 2vh;
-        border-radius: 10px;
-        background-color: rgb(154, 223, 154);
+        border-radius: 20px;
+        background-color: #ffc8dd;
         border: unset;
         font-family: 'Poppins';
+        font-weight: 600;
+        font-size: 15px;
         transition: background-color 0.3s;
+        color: white;
     }
 
     #submitButton:hover {
-        background-color: rgb(121, 179, 121);
+        background-color: #ffa7c9;
     }
 </style>

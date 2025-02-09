@@ -1,20 +1,37 @@
 ---
 
-const { itemname, itemurl, imgurl, price, id } = Astro.props;
+const { itemname, itemurl, imgurl, itemprice, itemcolor, itembrand, itemsize, id } = Astro.props;
+
+// console.log({ itemname, itemurl, imgurl, itemprice, itemcolor, itembrand, itemsize, id });
 
 ---
 
 <div id={id} class="wishlistItem">
     <a target=_blank href={itemurl}><img src={imgurl}></a>
     <div id="productText">
-        <div>{itemname}</div>
-        <div class="Price">R${price}</div>
+
+        
+        <div id="top">
+            <span class="details-a">
+                {itembrand ? (<span class="item-details" id="head">{itembrand}</span>) : null}
+            </span>
+            <div class="Price">R${itemprice}</div>
+            </div>
+            <div class="details">
+                {itemcolor ? (<span class="item-details">{itemcolor}</span>) : null}
+                {itemsize ? (<span class="item-details">{itemsize}</span>) : null}
+            </div>
+            
+            <div>{itemname}</div>
+        
+        
     </div>
     
 </div>
 
 <script define:vars={{id}} type="module">
 import { addToIdList, getAllIds } from "./source.js";
+
 
     const card = document.getElementById(id);
     card?.addEventListener('click', function() {
@@ -30,21 +47,56 @@ import { addToIdList, getAllIds } from "./source.js";
     }
 
     .Price {
-        font-weight: 700;
+        font-weight: 600;
+    }
+
+    #top{
+        display: grid;
+        align-items: center;
+        grid-template-columns: 70% auto;
+        justify-content: space-between;
+        width: 100%;
+        /* margin-bottom: 1px; */
+    }
+
+    .details {
+        /* margin: 0px 10px 10px 0px; */
+    }
+
+
+    .details-a > .item-details {
+        display: inline-block;
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .item-details {
+        background-color: #790604;
+        border-radius: 20px;
+        padding: 5px;
+        font-size: 15px;
+        color: white;
+        font-weight: 600;
     }
 
     #productText {
-        margin-left: 15px;
-        margin-right: 5px;
-        margin-bottom: 5px;
-        display: flex;
-        justify-content: space-between;
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+        padding-top: 5px;
     }
+
     .wishlistItem {
         background-color: rgb(247, 247, 247);
         border-radius: 10px;
         transition: opacity 0.5s ease;
         width: 250px;
+        display: flex;
+        flex-direction: column;
+        
     }
 
     .wishlistItem:hover {

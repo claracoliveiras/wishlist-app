@@ -3,6 +3,9 @@ CREATE TABLE IF NOT EXISTS items (
     id uuid NOT NULL PRIMARY KEY DEFAULT uuid_generate_v4(),
     itemname text NOT NULL,
     itemurl text NOT NULL,
-    img text NOT NULL,
-    price int NOT NULL
+    imgurl text NOT NULL,
+    itemprice float NOT NULL,
+    itemcolor text,
+    itembrand text,
+    itemsize text
 );

@@ -4,11 +4,11 @@ import {Pool} from 'pg';
 import cors from 'cors';
 
 const app = express();
-const port = 3000;
+const port = 2000;
 
 const pool = new Pool ({
     user: 'postgres',
-    host: 'localhost',
+    host: 'db',
     database: 'items',
     password: '1234',
     port: 5432
@@ -46,10 +46,13 @@ app.get ('/getWishlistItems', (request, response) => {
 app.post('/createNewItem', (request, response) => {
     const itemname = request.body.itemname;
     const itemurl = request.body.itemurl;
-    const img = request.body.img;
-    const price = Number.parseInt(request.body.price);
+    const imgurl = request.body.imgurl;
+    const itemprice = Number.parseFloat(request.body.itemprice);
+    const itemcolor = request.body.itemcolor;
+    const itembrand = request.body.itembrand;
+    const itemsize = request.body.itemsize;
 
-    pool.query('INSERT INTO items (itemname, itemurl, img, price) VALUES ($1, $2, $3, $4)', [itemname, itemurl, img, price], (error, results) => {
+    pool.query('INSERT INTO items (itemname, itemurl, imgurl, itemprice, itembrand, itemcolor, itemsize) VALUES ($1, $2, $3, $4, $5, $6, $7)', [itemname, itemurl, imgurl, itemprice, itembrand, itemcolor, itemsize], (error, results) => {
         if (error) {
             console.log(error);
         }
