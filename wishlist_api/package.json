@@ -1,14 +1,15 @@
 {
   "name": "wishlist_api",
-  "module": "index.ts",
+  "module": "lib/index.ts",
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest",
     "@types/express": "^5.0.0",
-    "@types/pg": "^8.11.11"
+    "@types/pg": "^8.11.11",
+    "jest-mock": "^29.7.0"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.7.3"
   },
   "dependencies": {
     "@types/cors": "^2.8.17",
@@ -18,6 +19,6 @@
     "wishlist_api": "file:"
   },
   "scripts": {
-    "start": "bun index.ts"
+    "start": "bun lib/index.ts"
   }
 }
