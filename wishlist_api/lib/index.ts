@@ -38,11 +38,19 @@ app.get ('/getAllWishlistItems', (request, response) => {
 });
 
 app.post('/createNewWishlistItem', (request, response) => {
+    const itemname = request.body.itemname;
+    const itemurl = request.body.itemurl;
+    const imgurl = request.body.imgurl;
+    const itemprice = Number.parseFloat(request.body.itemprice);
+    const itemcolor = request.body.itemcolor;
+    const itembrand = request.body.itembrand;
+    const itemsize = request.body.itemsize;
 
-    createNewWishlistItem();
+    createNewWishlistItem(itemname, itemurl, imgurl, itemprice, itemcolor, itembrand, itemsize);
 
 });
 
 app.delete('/deleteSingleItemByName', (request, response) => {
-    deleteSingleItemByName();
+    const itemname = request.body.itemname;
+    deleteSingleItemByName(itemname);
 });
