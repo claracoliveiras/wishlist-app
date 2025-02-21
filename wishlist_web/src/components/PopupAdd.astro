@@ -15,7 +15,7 @@
         const itembrand = (document.querySelector('#itembrand') as HTMLInputElement).value;
         const itemsize = (document.querySelector('#itemsize') as HTMLInputElement).value;
    
-        await fetch('http://192.168.0.108:2000/createNewItem', {
+        await fetch('http://192.168.0.106:2000/createNewWishlistItem', {
             body: JSON.stringify({
                 itemname, itemurl, imgurl, itemprice, itemcolor, itembrand, itemsize
             }),

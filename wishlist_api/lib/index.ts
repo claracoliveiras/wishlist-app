@@ -33,11 +33,12 @@ app.listen(port, () => {
     console.log(`App running on port ${port}.`);
 });
 
-app.get ('/getAllWishlistItems', (request, response) => {
-    getAllWishlistItems();
+app.get ('/getAllWishlistItems', async (request, response) => {
+    var results = await getAllWishlistItems();
+    response.status(200).json(results);
 });
 
-app.post('/createNewWishlistItem', (request, response) => {
+app.post('/createNewWishlistItem', async (request, response) => {
     const itemname = request.body.itemname;
     const itemurl = request.body.itemurl;
     const imgurl = request.body.imgurl;
@@ -46,11 +47,12 @@ app.post('/createNewWishlistItem', (request, response) => {
     const itembrand = request.body.itembrand;
     const itemsize = request.body.itemsize;
 
-    createNewWishlistItem(itemname, itemurl, imgurl, itemprice, itemcolor, itembrand, itemsize);
-
+    await createNewWishlistItem(itemname, itemurl, imgurl, itemprice, itemcolor, itembrand, itemsize);
+    response.status(201).send("Wishlist item added");
 });
 
-app.delete('/deleteSingleItemByName', (request, response) => {
+app.delete('/deleteSingleItemByName', async (request, response) => {
     const itemname = request.body.itemname;
-    deleteSingleItemByName(itemname);
+    await deleteSingleItemByName(itemname);
+    response.status(200).send("Wishlist item deleted");
 });

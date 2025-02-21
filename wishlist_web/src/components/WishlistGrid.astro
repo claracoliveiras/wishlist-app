@@ -2,7 +2,7 @@
 import WishlistItem from "./WishlistItem.astro";
 import PopupAdd from "./PopupAdd.astro";
 
-const wishlistItemsDb = await fetch('http://192.168.0.108:2000/getWishlistItems');
+const wishlistItemsDb = await fetch('http://192.168.0.106:2000/getAllWishlistItems');
 const data: Array<{
     itemname: string,
     itemurl: string,
