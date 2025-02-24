@@ -1,0 +1,92 @@
+<div id="row-one">
+    <div id="left">
+        <img id="profile-picture" src="https://i.pinimg.com/736x/f1/ec/fe/f1ecfed0e473fc74aad8c5db7a35148a.jpg">
+    </div>
+    <div id="right">
+        <div id="right-row-one">
+            <div id="row-one-column-one">
+                <div id="username">@claracoliveiras</div>
+                <div id="display-name">Clara Campos</div>
+            </div>
+            <div id="row-one-column-two">
+                <div id="row-one-column-two-row">
+                    <button id="copy-profile-link" class="profile-btn"><i class="fa fa-clone" aria-hidden="true"></i></button>
+                    <button id="follow" class="profile-btn"><i class="fa-solid fa-user-plus"></i></button>
+                    <button id="settings" class="profile-btn"><i class="fa fa-cog" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </div>
+        <div id="right-row-two">
+            <div id="bio">This is my wishlist page!</div>
+        </div>
+        <div id="right-row-three">
+            <div id="right-row-three-column-one">
+                <div class="social-counter-column" id="wish-count-column">
+                    <div class="title">WISH COUNT</div>
+                    <div class="amount">1</div>
+                </div>
+                <div class="social-counter-column" id="following-count-column">
+                    <div class="title">FOLLOWING</div>
+                    <div class="amount">1</div>
+                </div>
+                <div class="social-counter-column" id="follower-count-column">
+                    <div class="title">FOLLOWERS</div>
+                    <div class="amount">1</div>
+                </div>
+            </div>
+            <div id="right-row-three-column-two">
+                <button id="instagram" class="profile-btn"><i class="fa-brands fa-instagram"></i></button>
+                <button id="instagram" class="profile-btn"><i class="fa-brands fa-instagram"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #profile-picture {
+        width: 250px;
+        border-radius: 10px;
+    }
+
+    #display-name {
+        font-weight: 600;
+        font-size: 24px;
+    }
+
+    .profile-btn {
+        border-style: none;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .title {
+        font-weight: 700;
+    }
+
+    /* layout oriented CSS */
+
+    #right-row-three-column-one {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #right-row-three {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #row-one {
+        display: flex;
+    }
+
+    #right {
+        margin-left: 10px;
+        width: 100%;
+    }
+
+    #right-row-one {
+        display: flex;
+        justify-content: space-between;
+    }
+
+</style>

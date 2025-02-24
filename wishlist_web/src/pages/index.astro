@@ -1,8 +1,8 @@
 ---
-import Profile from "../components/Profile.astro"
+import Profile from "../components/profile/Profile.astro"
 import "../styles/global.css"
 import Layout from "../layouts/Layout.astro"
-import WishlistGrid from "../components/WishlistGrid.astro"
+import WishlistGrid from "../components/products-grid/ProductsGrid.astro"
 ---
 
 <Layout>
@@ -10,8 +10,6 @@ import WishlistGrid from "../components/WishlistGrid.astro"
 		<Profile></Profile>
 
 		<WishlistGrid></WishlistGrid>
-
-		<div id="footer"></div>
 	</div>
 </Layout>
 
@@ -19,12 +17,9 @@ import WishlistGrid from "../components/WishlistGrid.astro"
 
 	#content {
 		height: 100vh;
-		max-width: 80vh;
+		max-width: 50rem;
 		width: 100%;
 		margin: 30px auto;
 	}
 
-	#footer {
-		height: 20vh;
-	}
 </style>

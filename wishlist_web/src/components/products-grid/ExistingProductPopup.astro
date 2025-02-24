@@ -1,0 +1,19 @@
+---
+
+const { itemname, itemurl, imgurl, itemprice, itemcolor, itembrand, itemsize, id } = Astro.props;
+
+---
+
+<div id="product-popup" popover>
+    <div id="popup-product-info-grid">
+        <div id="column"><img src={imgurl}></div>
+        <div id="column">
+            <div>{itembrand}</div>
+            <div>{itemname}</div>
+            <div>Color: {itemcolor}</div>
+            <div>Size: {itemsize}</div>
+            <div>Price: {itemprice}</div>
+
+        </div>
+    </div>
+</div>

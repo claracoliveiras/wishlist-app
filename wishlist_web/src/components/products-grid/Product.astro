@@ -1,0 +1,87 @@
+---
+
+const { itemname, itemurl, imgurl, itemprice, itemcolor, itembrand, itemsize, id } = Astro.props;
+
+---
+
+<button class="buttonstyle" id="wishlist-item" popovertarget="product-popup">
+    <div id={id} class="wishlist-item-content">
+        <a id="product-image" target=_blank href={itemurl}><img src={imgurl}></a>
+        <div id="product-text">
+            <div id="top-area-product">
+                <span class="product-brand-price-row">
+                    <span class="product-brand" id="head">{itembrand}</span>
+                    <div class="product-price">R${itemprice}</div>
+                </span>
+            </div>
+            <div class="product-name">{itemname}</div>
+        </div>
+        
+    </div>
+    
+</button>
+
+
+<script define:vars={{id}} type="module">
+    import { addToIdList, getAllIds } from "./source.js";
+        const card = document.getElementById(id);
+        card?.addEventListener('click', function() {
+            addToIdList(card.id);
+            getAllIds();
+        });
+</script>
+
+<style>
+    img {
+        object-fit: cover;
+        height: 250px;
+        width: 100%;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        margin-top: 5px;
+        border-style: solid;
+        border-color: black;
+
+    }
+
+    #wishlist-item {
+        border-radius: 20px;
+        border-style: none;
+        border-color: black;
+        opacity: 1;
+        transition: opacity 0.5s;
+        padding: 10px;
+    }
+
+    #wishlist-item:hover {
+        opacity: 0.8;
+    }
+
+    .wishlist-item-content {
+        font-family: "Poppins";
+        border-style: none;
+    }
+
+    .product-brand-price-row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .product-brand {
+        background-color: rgb(173, 29, 48);
+        color: white;
+        padding: 5px;
+        border-radius: 20px;
+        font-weight: 600;
+    }
+
+    .product-name {
+        font-weight: 700;
+    }
+
+    .product-price {
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+</style>

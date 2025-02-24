@@ -1,8 +1,8 @@
 ---
-import WishlistItem from "./WishlistItem.astro";
-import PopupAdd from "./PopupAdd.astro";
+import Product from "./Product.astro";
+import NewItemPopup from "./NewItemPopup.astro";
 
-const wishlistItemsDb = await fetch('http://192.168.0.106:2000/getAllWishlistItems');
+const wishlistItemsDb = await fetch('http://localhost:2000/getAllWishlistItems');
 const data: Array<{
     itemname: string,
     itemurl: string,
@@ -16,19 +16,19 @@ const data: Array<{
 
 ---
 
-<div id="titleBox">
+<div id="title-box">
     <div class="Title">Item wishlist</div>
     <div id="buttons">
-        <button class="buttonstyle" popovertarget="popupadd"><i class="fa fa-plus"></i></button>
+        <button class="buttonstyle" popovertarget="new-item-popup"><i class="fa fa-plus"></i></button>
         <button class="buttonstyle"><i class="fa fa-trash" aria-hidden="true"></i></button>
     </div>
 </div>
 
-<div id="popupadd" popover><PopupAdd></PopupAdd></div>
+<div id="new-item-popup" popover><NewItemPopup></NewItemPopup></div>
 
-<div id="wishlistGrid">
+<div id="products-grid">
     {
-        data.map((data) => <WishlistItem 
+        data.map((data) => <Product 
             itemname={data.itemname} 
             itemurl={data.itemurl} 
             imgurl={data.imgurl} 
@@ -37,22 +37,28 @@ const data: Array<{
             itembrand={data.itembrand} 
             itemsize={data.itemsize} 
             id={data.id}>
-        </WishlistItem>)
+        </Product>)
     }
 </div>
 
 <style>
-    #wishlistGrid {
+    #products-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 10px;
     }
 
-    #titleBox {
+    #title-box {
         padding: 2vh 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+
+    #buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
     }
 
     .buttonstyle {
@@ -68,22 +74,15 @@ const data: Array<{
 
     }
 
-    #buttons {
-        display: flex;
-        gap: 10px;
-        justify-content: space-between;
-    }
-
-    #popupadd {
+    #new-item-popup {
         border: unset;
         padding: 2vh;
         border-radius: 10px;
     }
 
-    #popupadd::backdrop {
+    #new-item-popup::backdrop {
         background: rgba(0, 0, 0, 0.25);
     }
 
-    #popupadd:
 
 </style>
