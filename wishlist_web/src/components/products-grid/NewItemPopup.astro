@@ -14,10 +14,11 @@
         const itemcolor = (document.querySelector('#itemcolor') as HTMLInputElement).value;
         const itembrand = (document.querySelector('#itembrand') as HTMLInputElement).value;
         const itemsize = (document.querySelector('#itemsize') as HTMLInputElement).value;
-   
-        await fetch('http://localhost:2000/createNewWishlistItem', {
+        const itemcurrency = (document.querySelector('#currency-select') as HTMLInputElement).value;
+
+        await fetch('http://192.168.0.102:2000/createNewWishlistItem', {
             body: JSON.stringify({
-                itemname, itemurl, imgurl, itemprice, itemcolor, itembrand, itemsize
+                itemname, itemurl, imgurl, itemprice, itemcolor, itembrand, itemsize, itemcurrency
             }),
             headers: {
                 "content-type": "application/json"
@@ -40,36 +41,56 @@
         <div id="titlebox">
             <div id="title">
                 <i class="fa fa-bookmark" aria-hidden="true"></i>
-                Adicionar novo item
+                Add new item
             </div>
-            <button id="submitButton" type="submit">Adicionar</button>
         </div>
         
-
-        <label for="itemname">Nome</label><br>
+        <label for="itemname">Name</label><br>
         <input placeholder="Adicione o nome do item" type="text" id="itemname" name="itemname" required>
 
-        <label for="itembrand">Marca</label><br>
+        <label for="itembrand">Brand</label><br>
         <input placeholder="Adicione a marca ou origem do item (ex: M.A.C ou Temu)" type="text" id="itembrand" name="itembrand" required>
         <br>
 
-        <label for="itemcolor">Cor</label><br>
-        <input placeholder="Adicione a cor (swatch) do item" type="text" id="itemcolor" name="itemcolor">
-        <br>
+        <div id="item-color-and-brand-row">
+            <div id="item-color-and-brand-column-one">
+                <label for="itemcolor">Color</label>
+                <input placeholder="Adicione a cor (swatch) do item" type="text" id="itemcolor" name="itemcolor">
+            </div>
+            <div id="item-color-and-brand-column-two">
+                <label for="itemsize">Size</label>
+                <input placeholder="Adicione o tamanho do item (ex: 39 ou M)" type="text" id="itemsize" name="itemsize">
+            </div>
+            
+        </div>
+        
+        <label for="itemlink">URL</label><br>
+        <input placeholder="Adicione o link do produto" type="url" id="link" name="link" required>
 
-        <label for="itemsize">Tamanho</label><br>
-        <input placeholder="Adicione o tamanho do item (ex: 39 ou M)" type="text" id="itemsize" name="itemsize">
-        <br>
-
-        <label for="imgurl">Imagem</label><br>
+        <label for="imgurl">Image</label><br>
         <input placeholder="Adicione a url da imagem do produto" type="url" id="image" name="image" required>
         <br>
-        <label for="itemprice">Preço</label><br>
-        <input placeholder="Adicione o preço do produto" type="number" id="price" name="price" required>
-        <br>
-        <label for="itemlink">Link</label><br>
-        <input placeholder="Adicione o link do produto" type="url" id="link" name="link" required>
-        <br><br>
+        
+        <div id="bottom-row">
+            <div id="right-product-column">
+                <div id="right-product-price-row">
+                    <div id="currency-column">
+                        <label for="itemcurrency">Currency</label><br>
+                        <select name="currency-select" id="currency-select">
+                            <option value="R$" selected>R$</option>
+                            <option value="$">$</option>
+                        </select>
+                    </div>
+                    <div id="price-column">
+                        <label for="itemprice">Price</label><br>
+                        <input placeholder="Adicione o preço do produto" type="number" id="price" name="price" required>
+
+  
+                    </div>
+                </div>
+                <button id="submitButton" type="submit">Adicionar</button>
+            </div>
+        </div>
         
     </form>
 
@@ -78,18 +99,24 @@
 
 
 <style>
+
     #popup {
         display: block;
         justify-content: center;
-        width: 50vh;
+        width: 50vw;
         font-size: 15px;
         margin: 5px;
     }
 
-    #itemname, #image, #price, #link, #itembrand, #itemcolor, #itemsize {
-        border-color: rgb(238, 238, 238);
-        border-style: dotted;
-        border-radius: 5px;
+    #bottom-row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #itemname, #image, #price, #link, #itembrand, #itemcolor, #itemsize, #currency-select {
+        background-color: #e6e6e6;
+        border-style: none;
+        border-radius: 20px;
         padding: 1vh;
         box-sizing: border-box;
         margin-bottom: 20px;
@@ -97,12 +124,16 @@
         font-family: 'Poppins';
     }
 
+    image {
+        height: 100%;
+    }
+
     #itemname:focus, #image:focus, #price:focus, #link:focus, #itembrand:focus, #itemcolor:focus, #itemsize:focus {
-        outline-color: #ffc8dd;
+        outline-color: rgb(150, 16, 16);
     }
 
     .fa.fa-bookmark {
-        color: #ffc8dd;
+        color: rgb(150, 16, 16);
     }
 
     #title {
@@ -124,7 +155,7 @@
     #submitButton {
         padding: 5px 2vh;
         border-radius: 20px;
-        background-color: #ffc8dd;
+        background-color: rgb(150, 16, 16);
         border: unset;
         font-family: 'Poppins';
         font-weight: 600;
@@ -134,6 +165,38 @@
     }
 
     #submitButton:hover {
-        background-color: #ffa7c9;
+        background-color: rgb(150, 16, 16);
     }
+
+    #currency-select {
+        background-color: rgb(150, 16, 16);
+        color: white;
+        font-weight: 600;
+    }
+
+    option {
+        font-family: "Poppins";
+        border-style: none;
+        font-weight: 600;
+        background-color: white;
+        color: black;
+    }
+
+    /* Layout CSS */
+    #item-color-and-brand-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    #item-color-and-brand-column-one, #item-color-and-brand-column-two {
+        width: 100%;
+    }
+
+    #right-product-price-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
 </style>

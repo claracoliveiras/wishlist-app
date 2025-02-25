@@ -3,13 +3,26 @@ import Profile from "../components/profile/Profile.astro"
 import "../styles/global.css"
 import Layout from "../layouts/Layout.astro"
 import WishlistGrid from "../components/products-grid/ProductsGrid.astro"
+
+const wishlistItemsDb = await fetch('http://localhost:2000/getAllWishlistItems');
+const data: Array<{
+    itemname: string,
+    itemurl: string,
+    imgurl: string,
+    itemprice: number,
+    itemcolor: string,
+    itembrand: string,
+    itemsize: string,
+    id: string
+}> = await wishlistItemsDb.json();
+
 ---
 
 <Layout>
 	<div id="content">
-		<Profile></Profile>
+		<Profile data={data}></Profile>
 
-		<WishlistGrid></WishlistGrid>
+		<WishlistGrid data={data}></WishlistGrid>
 	</div>
 </Layout>
 

@@ -1,9 +1,9 @@
 import { request, response } from 'express';
 import { pool } from '../index';
 
-export async function createNewWishlistItem (itemname:string, itemurl:string, imgurl: string, itemprice: number, itembrand: string, itemcolor: string, itemsize: string) {
+export async function createNewWishlistItem (itemname:string, itemurl:string, imgurl: string, itemprice: number, itembrand: string, itemcolor: string, itemsize: string, itemcurrency: string) {
 
-    const query = await pool.query('INSERT INTO items (itemname, itemurl, imgurl, itemprice, itembrand, itemcolor, itemsize) VALUES ($1, $2, $3, $4, $5, $6, $7)', [itemname, itemurl, imgurl, itemprice, itembrand, itemcolor, itemsize]);
+    const query = await pool.query('INSERT INTO items (itemname, itemurl, imgurl, itemprice, itembrand, itemcolor, itemsize, itemcurrency) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [itemname, itemurl, imgurl, itemprice, itembrand, itemcolor, itemsize, itemcurrency]);
     
     return query.rows;
 }

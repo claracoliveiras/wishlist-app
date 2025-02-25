@@ -1,42 +1,64 @@
+---
+
+const { data } = Astro.props as {
+    data: Array<{
+    itemname: string,
+    itemurl: string,
+    imgurl: string,
+    itemprice: number,
+    itemcolor: string,
+    itembrand: string,
+    itemsize: string,
+    id: string
+}> };
+
+const wishlistCount = data.length;
+
+---
+
 <div id="row-one">
     <div id="left">
         <img id="profile-picture" src="https://i.pinimg.com/736x/f1/ec/fe/f1ecfed0e473fc74aad8c5db7a35148a.jpg">
     </div>
     <div id="right">
-        <div id="right-row-one">
-            <div id="row-one-column-one">
-                <div id="username">@claracoliveiras</div>
-                <div id="display-name">Clara Campos</div>
-            </div>
-            <div id="row-one-column-two">
-                <div id="row-one-column-two-row">
-                    <button id="copy-profile-link" class="profile-btn"><i class="fa fa-clone" aria-hidden="true"></i></button>
-                    <button id="follow" class="profile-btn"><i class="fa-solid fa-user-plus"></i></button>
-                    <button id="settings" class="profile-btn"><i class="fa fa-cog" aria-hidden="true"></i></button>
+        <div id="right-main-row-one">
+            <div id="right-row-one">
+                <div id="row-one-column-one">
+                    <div id="username">@claracoliveiras</div>
+                    <div id="display-name">Clara Campos</div>
+                    <div id="right-row-two">
+                        <div id="bio">This is my wishlist page!</div>
+                    </div>
+                </div>
+                <div id="row-one-column-two">
+                    <div id="row-one-column-two-row">
+                        <button id="copy-profile-link" class="profile-btn"><i class="fa fa-clone" aria-hidden="true"></i></button>
+                        <button id="follow" class="profile-btn"><i class="fa-solid fa-user-plus"></i></button>
+                        <button id="settings" class="profile-btn"><i class="fa fa-cog" aria-hidden="true"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div id="right-row-two">
-            <div id="bio">This is my wishlist page!</div>
-        </div>
-        <div id="right-row-three">
-            <div id="right-row-three-column-one">
-                <div class="social-counter-column" id="wish-count-column">
-                    <div class="title">WISH COUNT</div>
-                    <div class="amount">1</div>
+        <div id="right-main-row-two">
+            <div id="right-row-three">
+                <div id="right-row-three-column-one">
+                    <div class="social-counter-column" id="wish-count-column">
+                        <div class="title">WISH COUNT</div>
+                        <div class="amount">{wishlistCount}</div>
+                    </div>
+                    <div class="social-counter-column" id="following-count-column">
+                        <div class="title">FOLLOWING</div>
+                        <div class="amount">1</div>
+                    </div>
+                    <div class="social-counter-column" id="follower-count-column">
+                        <div class="title">FOLLOWERS</div>
+                        <div class="amount">1</div>
+                    </div>
                 </div>
-                <div class="social-counter-column" id="following-count-column">
-                    <div class="title">FOLLOWING</div>
-                    <div class="amount">1</div>
+                <div id="right-row-three-column-two">
+                    <button id="instagram" class="profile-btn"><i class="fa-brands fa-instagram"></i></button>
+                    <button id="instagram" class="profile-btn"><i class="fa-brands fa-github"></i></button>
                 </div>
-                <div class="social-counter-column" id="follower-count-column">
-                    <div class="title">FOLLOWERS</div>
-                    <div class="amount">1</div>
-                </div>
-            </div>
-            <div id="right-row-three-column-two">
-                <button id="instagram" class="profile-btn"><i class="fa-brands fa-instagram"></i></button>
-                <button id="instagram" class="profile-btn"><i class="fa-brands fa-instagram"></i></button>
             </div>
         </div>
     </div>
@@ -44,7 +66,7 @@
 
 <style>
     #profile-picture {
-        width: 250px;
+        width: 200px;
         border-radius: 10px;
     }
 
@@ -61,13 +83,31 @@
 
     .title {
         font-weight: 700;
+        font-size: 1rem;
+    }
+
+    .social-counter-column {
+        font-size: 18px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(150, 16, 16);
+        color: white;
+        padding: 5px;
+        border-radius: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #instagram {
+        font-size: 25px;
     }
 
     /* layout oriented CSS */
 
     #right-row-three-column-one {
         display: flex;
-        justify-content: space-between;
+        padding-right: 10px;
     }
 
     #right-row-three {
@@ -79,9 +119,17 @@
         display: flex;
     }
 
+    .social-counter-column {
+        margin-right: 10px;
+    }
+
     #right {
-        margin-left: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-left: 15px;
         width: 100%;
+        height: 200px;
     }
 
     #right-row-one {

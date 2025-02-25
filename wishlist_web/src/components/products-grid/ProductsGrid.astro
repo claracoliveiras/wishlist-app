@@ -2,8 +2,9 @@
 import Product from "./Product.astro";
 import NewItemPopup from "./NewItemPopup.astro";
 
-const wishlistItemsDb = await fetch('http://localhost:2000/getAllWishlistItems');
-const data: Array<{
+
+const { data } = Astro.props as {
+    data: Array<{
     itemname: string,
     itemurl: string,
     imgurl: string,
@@ -12,37 +13,35 @@ const data: Array<{
     itembrand: string,
     itemsize: string,
     id: string
-}> = await wishlistItemsDb.json();
+}> };
+
 
 ---
 
-<div id="title-box">
-    <div class="Title">Item wishlist</div>
-    <div id="buttons">
-        <button class="buttonstyle" popovertarget="new-item-popup"><i class="fa fa-plus"></i></button>
-        <button class="buttonstyle"><i class="fa fa-trash" aria-hidden="true"></i></button>
-    </div>
+<div id="adding-button">
+    <button class="buttonstyle" popovertarget="new-item-popup"><i class="fa fa-plus"></i></button>
 </div>
 
 <div id="new-item-popup" popover><NewItemPopup></NewItemPopup></div>
 
 <div id="products-grid">
     {
-        data.map((data) => <Product 
-            itemname={data.itemname} 
-            itemurl={data.itemurl} 
-            imgurl={data.imgurl} 
-            itemprice={data.itemprice} 
-            itemcolor={data.itemcolor} 
-            itembrand={data.itembrand} 
-            itemsize={data.itemsize} 
-            id={data.id}>
+        data.map((d) => <Product 
+            itemname={d.itemname} 
+            itemurl={d.itemurl} 
+            imgurl={d.imgurl} 
+            itemprice={d.itemprice} 
+            itemcolor={d.itemcolor} 
+            itembrand={d.itembrand} 
+            itemsize={d.itemsize} 
+            id={d.id}>
         </Product>)
     }
 </div>
 
 <style>
     #products-grid {
+        margin-top: 30px;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 10px;
@@ -54,19 +53,21 @@ const data: Array<{
         justify-content: space-between;
         align-items: center;
     }
-
-    #buttons {
-        display: flex;
-        gap: 10px;
-        justify-content: space-between;
+    
+    #adding-button {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .buttonstyle {
         padding: 2vh;
         border-radius: 10px;
-        background-color: rgb(247, 247, 247);
+        background-color: rgb(150, 16, 16);
         border: unset;
         transition: background-color 0.3s, transform 0.3s;
+        color: white;
     }
 
     .buttonstyle:hover {

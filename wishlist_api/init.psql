@@ -7,5 +7,6 @@ CREATE TABLE IF NOT EXISTS items (
     itemprice float NOT NULL,
     itemcolor text,
     itembrand text,
-    itemsize text
+    itemsize text,
+    itemcurrency text
 );

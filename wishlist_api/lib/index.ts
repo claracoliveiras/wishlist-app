@@ -46,8 +46,9 @@ app.post('/createNewWishlistItem', async (request, response) => {
     const itemcolor = request.body.itemcolor;
     const itembrand = request.body.itembrand;
     const itemsize = request.body.itemsize;
+    const itemcurrency = request.body.itemcurrency;
 
-    await createNewWishlistItem(itemname, itemurl, imgurl, itemprice, itemcolor, itembrand, itemsize);
+    await createNewWishlistItem(itemname, itemurl, imgurl, itemprice, itembrand, itemcolor, itemsize, itemcurrency);
     response.status(201).send("Wishlist item added");
 });
 
