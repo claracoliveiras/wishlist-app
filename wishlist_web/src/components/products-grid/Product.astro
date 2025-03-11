@@ -2,10 +2,15 @@
 
 const { itemname, itemurl, imgurl, itemprice, itemcolor, itembrand, itemsize, id } = Astro.props;
 
+
+
 ---
 
 <button class="buttonstyle" id="product-card" popovertarget="product-popup">
     <div id={id} class="product-main-column">
+        <div class="deleting-button" id={id}>
+            <i class="fa-solid fa-trash" id="deleting-button-icon"></i>
+        </div>
         <div id="product-picture"><img src={imgurl}></div>
         <div id="product-brand-price-row">
             <div id="product-brand">{itembrand}</div>
@@ -18,13 +23,18 @@ const { itemname, itemurl, imgurl, itemprice, itemcolor, itembrand, itemsize, id
 </button>
 
 
-<script define:vars={{id}} type="module">
-    import { addToIdList, getAllIds } from "./source.js";
-        const card = document.getElementById(id);
-        card?.addEventListener('click', function() {
-            addToIdList(card.id);
-            getAllIds();
-        });
+<script define:vars={{id}}>
+    document.querySelectorAll(".deleting-button").forEach(deleteButton => {
+        deleteButton.addEventListener('click', async function() {
+
+            await fetch (`http://localhost:2000/deleteSingleItemById/${id}`, {
+                method: "DELETE",
+            });
+
+            location.reload();
+
+    });
+});
 </script>
 
 <style>
@@ -32,6 +42,14 @@ const { itemname, itemurl, imgurl, itemprice, itemcolor, itembrand, itemsize, id
         width: 260px;
         height: 260px;
         object-fit: cover;
+
+    }
+
+    #deleting-button-icon {
+        background-color: rgb(150, 16, 16);
+        padding: 8px;
+        color: white;
+        border-radius: 5px;
 
     }
 
@@ -76,5 +94,21 @@ const { itemname, itemurl, imgurl, itemprice, itemcolor, itembrand, itemsize, id
         margin-right: 10px;
         align-items:center;
     }
+
+    .product-main-column {
+        display: block;
+    }
+
+    .deleting-button {
+        position: fixed;
+        margin-left: 14rem;
+        visibility: hidden;
+        cursor: pointer;
+    }
+
+    #product-card:hover .deleting-button {
+        visibility: visible;
+    }
+
 
 </style>

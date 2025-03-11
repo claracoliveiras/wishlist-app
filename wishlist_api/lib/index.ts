@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import {Pool} from 'pg';
 import cors from 'cors';
-import { createNewWishlistItem, deleteSingleItemByName, getAllWishlistItems } from './api_requests/req_methods';
+import { createNewWishlistItem, deleteSingleItemById, getAllWishlistItems } from './api_requests/req_methods';
 
 const app = express();
 const port = 2000;
@@ -34,7 +34,7 @@ app.listen(port, () => {
 });
 
 app.get ('/getAllWishlistItems', async (request, response) => {
-    var results = await getAllWishlistItems();
+    const results = await getAllWishlistItems();
     response.status(200).json(results);
 });
 
@@ -52,8 +52,8 @@ app.post('/createNewWishlistItem', async (request, response) => {
     response.status(201).send("Wishlist item added");
 });
 
-app.delete('/deleteSingleItemByName', async (request, response) => {
-    const itemname = request.body.itemname;
-    await deleteSingleItemByName(itemname);
+app.delete('/deleteSingleItemById/:id', async (request, response) => {
+    const id = request.params.id;
+    await deleteSingleItemById(id);
     response.status(200).send("Wishlist item deleted");
 });

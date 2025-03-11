@@ -13,9 +13,9 @@ export async function getAllWishlistItems () {
     return query.rows;
 }
 
-export async function deleteSingleItemByName (itemname:string) {
+export async function deleteSingleItemById (id:string) {
 
-    const query = await pool.query('DELETE FROM items WHERE itemname = $1', [itemname]);
+    const query = await pool.query('DELETE FROM items WHERE id = $1', [id]);
     return query.rows;
     
 }
