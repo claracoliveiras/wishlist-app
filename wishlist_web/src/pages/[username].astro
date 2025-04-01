@@ -1,0 +1,41 @@
+---
+import Profile from "../components/profile/Profile.astro"
+import "../styles/global.css"
+import Layout from "../layouts/Layout.astro"
+import WishlistGrid from "../components/products-grid/ProductsGrid.astro"
+
+export const prerender = false;
+const { username } = Astro.params;
+
+const wishlistItemsDb = await fetch('https://wishlist-api-test.claras.studio/getAllWishlistItems');
+const data: Array<{
+    itemname: string,
+    itemurl: string,
+    imgurl: string,
+    itemprice: number,
+    itemcolor: string,
+    itembrand: string,
+    itemsize: string,
+    id: string
+}> = await wishlistItemsDb.json();
+
+---
+
+<Layout>
+	<div id="content">
+		<Profile data={data}></Profile>
+
+		<WishlistGrid data={data}></WishlistGrid>
+	</div>
+</Layout>
+
+<style>
+
+	#content {
+		height: 100vh;
+		max-width: 50rem;
+		width: 100%;
+		margin: 30px auto;
+	}
+
+</style>

@@ -1,38 +1,50 @@
 ---
-import Profile from "../components/profile/Profile.astro"
-import "../styles/global.css"
-import Layout from "../layouts/Layout.astro"
-import WishlistGrid from "../components/products-grid/ProductsGrid.astro"
+import Layout from "../layouts/Layout.astro";
 
-const wishlistItemsDb = await fetch('http://localhost:2000/getAllWishlistItems');
-const data: Array<{
-    itemname: string,
-    itemurl: string,
-    imgurl: string,
-    itemprice: number,
-    itemcolor: string,
-    itembrand: string,
-    itemsize: string,
-    id: string
-}> = await wishlistItemsDb.json();
 
 ---
 
-<Layout>
-	<div id="content">
-		<Profile data={data}></Profile>
+<script>
+	const form = document.querySelector('#loginForm');
+    form?.addEventListener('submit', (event) => {
+        event.preventDefault();
+    });
 
-		<WishlistGrid data={data}></WishlistGrid>
-	</div>
-</Layout>
+	const button = document.querySelector('button#submitButton');
 
-<style>
 
-	#content {
-		height: 100vh;
-		max-width: 50rem;
-		width: 100%;
-		margin: 30px auto;
+	async function handleLogin() {
+
+		const user_username = (document.querySelector('#username') as HTMLInputElement).value;
+		const user_password = (document.querySelector('#password') as HTMLInputElement).value;
+
+
+
+		await fetch('https://wishlist-api-test.claras.studio/userLogin', {
+		body: JSON.stringify({
+			user_username, user_password
+		}),
+		headers: {
+			"content-type": "application/json"
+		},
+		method: "POST",
+		credentials: "include"
+		});
 	}
 
-</style>
+	button?.addEventListener('click', () => {
+		handleLogin();
+	});
+</script>
+<Layout>
+	<div>login page</div>
+	<form id="loginForm">
+		<label for="username">Username</label><br>
+		<input placeholder="Insert your username..." type="text" id="username" name="username" required><br>
+
+		<label for="password">Password</label><br>
+		<input placeholder="Insert your password..." type="text" id="password" name="password" required>
+
+		<button id="submitButton" type="submit">Login</button>
+	</form>
+</Layout>

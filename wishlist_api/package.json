@@ -4,6 +4,8 @@
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest",
+    "@types/cookie-parser": "^1.4.8",
+    "@types/cookie-session": "^2.0.49",
     "@types/express": "^5.0.0",
     "@types/pg": "^8.11.11"
   },
@@ -12,10 +14,11 @@
   },
   "dependencies": {
     "@types/cors": "^2.8.17",
+    "cookie-parser": "^1.4.7",
+    "cookie-session": "^2.1.0",
     "cors": "^2.8.5",
     "express": "^4.21.2",
-    "pg": "^8.13.1",
-    "wishlist_api": "file:"
+    "pg": "^8.13.1"
   },
   "scripts": {
     "start": "bun lib/index.ts"

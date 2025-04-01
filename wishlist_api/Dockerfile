@@ -3,7 +3,7 @@ FROM oven/bun:latest
 WORKDIR /wishlist_api
 
 COPY package.json ./
-COPY bun.lockb ./
+COPY bun.lock ./
 
 RUN bun install
 

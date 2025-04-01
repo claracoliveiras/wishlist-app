@@ -16,7 +16,7 @@
         const itemsize = (document.querySelector('#itemsize') as HTMLInputElement).value;
         const itemcurrency = (document.querySelector('#currency-select') as HTMLInputElement).value;
 
-        await fetch('http://localhost:2000/createNewWishlistItem', {
+        await fetch('https://wishlist-api-test.claras.studio/createNewWishlistItem', {
             body: JSON.stringify({
                 itemname, itemurl, imgurl, itemprice, itemcolor, itembrand, itemsize, itemcurrency
             }),
